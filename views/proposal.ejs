@@ -1,0 +1,97 @@
+<%- include('header') %>
+<section>
+    <div class="container-fluid proposal-detail-bg pick-proposal-gradiend p-0">
+       <img class="banner-img" src="/proposal-detail-head.png" id="project-head">
+       <div class="container">
+        <div class="proposal-detail-header">
+            <div class="project-avatar ">
+                <img src="/project-avatar.png" id="project-avatar">
+            </div>
+            <div class="d-flex flex-column justify-content-center"> 
+                <div class="proposal-detail-header-title dao-primary-text" id="com-name">Axie Infinity</div>
+                <div class="d-flex" id="com-content">Axie Infinity, Ethereum tabanlı kripto para birimi AXS ve SLP kullanan Vietnam da bulunan oyun stüdyosu Sky Mavis tarafından geliştirilen NFT tabanlı bir çevrimiçi video oyunudur. Mayıs 2021 itibariyle en pahalı NFT koleksiyonu unvanını ele geçirmiştir.
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-8 pb-3">
+                <div class="proposal-title pb-2" id="title">
+                    Axie Infinity oyununun gelişimini hızlandırmak için yatırım almasını istiyor musun?
+                </div>
+                <div class="proposal-desc mb-1" id="content">
+                    Kasım 2019'da Sky Mavis stüdyosu, Axie Infinity oyununun gelişimini hızlandırmak için ~1.5 milyon dolar fon topladı. Fon toplama işlemi, Hashed, Pangea Blockchain Fund, ConsenSys ve 500 Startups'ın katılımıyla Animoca Brands şirketi tarafından yönetildi. Mayıs 2021'de Sky Mavis, oyunların kripto para birimlerine girişi olarak tanıttıktan sonra Mark Cuban'ın da dahil olduğu bir fon turunun parçası olarak 7,5 milyon daha topladı.[4]
+                </div>
+                <div class="vote-for-project" id="voteArea" style="display: none;">
+                    <button class="dao-yes proposal-create mx-1 dao-secondary rounded-lg text-center dao-primary-text border-0 my-3" onclick="giveVote('yes')">Evet</button>
+                    <button class="dao-yes proposal-create mx-1 dao-primary rounded-lg text-center dao-secondary-text border-0 my-3" onclick="giveVote('no')">Hayır</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="percent">
+                        <svg>
+                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle cx="70" cy="70" r="70"></circle>
+                        </svg>
+                        <div class="num">
+                            <h2 id="softcap-percentage"></h2>
+                        </div>
+                    </div>
+                    <h2 class="text">Katılım Doluluk Oranı</h2>
+                    <button id="supportIt" class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0" onclick="support()">Destek Ol</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8"> 
+                <div class="recent-vote">
+                    <div class="proposal-title pt-4">
+                        Recent Vote
+                    </div>
+                    <div class="d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                        <div class="recent-vote-title p-3 dao-primary-text">
+                            Axie Infinity oyununun gelişimini hızlandırmak için yatırım almasını istiyor musun?
+                        </div>
+                        <div class="p-3">
+                            <div class="recent-vote-remaining">Answer</div>
+                            <div class="dao-secondary-text">Yes</div>
+                        </div>
+                    </div>
+                    <progress max="100" value="100"></progress>
+                   
+                    <div class="d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                        <div class="recent-vote-title p-3 dao-primary-text">
+                            Axie Infinity oyununun gelişimini hızlandırmak için yatırım almasını istiyor musun?
+                        </div>
+                        <div class="p-3">
+                            <div class="recent-vote-remaining">Answer</div>
+                            <div class="dao-secondary-text">Yes</div>
+                        </div>
+                    </div>
+                    <progress max="100" value="100"></progress>
+                   
+                    <div class="d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                        <div class="recent-vote-title p-3 dao-primary-text">
+                            Axie Infinity oyununun gelişimini hızlandırmak için yatırım almasını istiyor musun?
+                        </div>
+                        <div class="p-3">
+                            <div class="recent-vote-remaining">Answer</div>
+                            <div class="dao-primary-text">No</div>
+                        </div>
+                    </div>
+                    <progress max="100" value="0"></progress>
+                    </div>
+            </div>
+        </div>
+      
+        </div>
+       
+    </div>
+</section>
+<%- include('footer') %>
+<%- include('loadScripts') %>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "name": "Bir oyun",
+        "content": "Bu oyun bilgileri lokal bir veritabanından çekildi."
+    },
+    "2": {
+        "name": "Diğer oyun",
+        "content": "Bu oyun da lokal bir veritabanından çekildi."
+    }
+}

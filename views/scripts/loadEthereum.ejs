@@ -1,0 +1,40 @@
+var selectedAccount
+var PlatformContract
+var PlatformContractBuild = <%- JSON.stringify(Platform) %>
+var ProposalContract 
+var ProposalContractBuild = <%- JSON.stringify(ProposalBuild) %>
+
+window.addEventListener('load', async() => {
+    let provider = window.ethereum
+
+    if(typeof provider !== "undefined") {
+      provider.request({method: 'eth_requestAccounts'})
+        .then(accounts => {
+          selectedAccount = accounts[0]
+          document.getElementById("accAddress").innerHTML = selectedAccount.slice(0,10) + "..."
+          console.log(`Selected account is ${selectedAccount}`)
+        })
+        .catch(err => {
+          console.log(err)
+          return
+        })
+
+      window.ethereum.on('accountsChanged', accounts => {
+        selectedAccount = accounts[0]
+        document.getElementById("accAddress").innerHTML = selectedAccount.slice(0,10) + "..."
+        console.log(`Selected account is changed to ${selectedAccount}`)
+      })
+    }
+
+    web3 = new Web3(provider)
+    
+    PlatformContract = new web3.eth.Contract(PlatformContractBuild.abi, "0x1F13024c33eAF0128172aA02aF9757187DEE08A6")
+    <% if(locals.Proposal) { %>
+      ProposalContract = new web3.eth.Contract(ProposalContractBuild.abi, "<%- address %>")
+      getProposalDetail()
+    <% }%>
+    <% if(locals.community) { %>
+      var community = <%- JSON.stringify(community) %>
+      loadCommunity()
+    <% } %>
+  })

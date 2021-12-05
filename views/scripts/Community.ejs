@@ -1,0 +1,67 @@
+const loadCommunity = async() => {
+    let resp = await PlatformContract.methods.getProposalLength(<%- comId %>).call()
+    loadProposals(resp)
+}
+
+const loadProposals = async(start) => {
+    let end = parseFloat(start - 10) < 0 ? 0 : parseFloat(start-10)
+    for(let i=start-1; i>=end; i--) {
+        let resp = await PlatformContract.methods.getProposalAddress(<%- comId %>, i).call()
+        await loadProposal(resp)
+    }
+}
+
+const loadProposal = async(address) => {
+    ProposalContract = new web3.eth.Contract(ProposalContractBuild.abi, address)
+    let title = await ProposalContract.methods.title().call();
+    let votingStartsAt = parseFloat(await ProposalContract.methods.votingStartsAt().call())*1000;
+    let votingClosesAt = parseFloat(await ProposalContract.methods.votingClosesAt().call())*1000;
+    let incoming = document.getElementById("incoming-proposals")
+    let openProposals = document.getElementById("open-proposals")
+    if(Date.now() < votingStartsAt) {
+        let createdAt = parseFloat(await ProposalContract.methods.createdAt().call())*1000;
+        let softcapPeriod = await ProposalContract.methods.softcapPeriod().call();
+        const calculateRequiredAmount = parseFloat(await ProposalContract.methods.calculateRequiredAmount().call())
+        const totalSupported = parseFloat(await ProposalContract.methods.totalSupported().call())
+        const completed = parseFloat(totalSupported/calculateRequiredAmount*100).toFixed(0)
+
+        incoming.innerHTML += `<div class="d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm">
+            <div class="recent-vote-title p-3 dao-primary-text">
+                ${title}
+            </div>
+            <div class="p-3">
+                <div class="recent-vote-remaining">End date</div>
+                <div>${new Date(votingStartsAt).toLocaleDateString()}</div>
+            </div>
+            <div class="p-3">
+                <div class="recent-vote-remaining">Duration</div>
+                <div>${softcapPeriod} Day</div>
+            </div>
+            <div class="recent-vote-progress p-3">
+               %${isNaN(completed) ? "0" : completed}
+            </div>
+            <a href="/proposal/${address}"><button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">View</button></a>
+        </div>
+        <progress max="100" value="80"></progress>`
+    } else {
+        openProposals.innerHTML += `<div class="d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+            <div class="recent-vote-title p-3 dao-primary-text">
+                ${title}
+            </div>
+            <div class="p-3">
+                <div class="recent-vote-remaining">Remaining time</div>
+                <div>${parseFloat((votingClosesAt-Date.now())/1000/60/60/24).toFixed(0)} days</div>
+            </div>
+            <div class="p-3">
+                <div class="recent-vote-remaining">Proposal  Vote</div>
+                <div>%70</div>
+                <div class="progress">
+                    <div class="progress-bar dao-secondary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar dao-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+            </div>
+            <a href="/proposal/${address}"><button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">Vote</button></a>
+        </div>`
+    }
+    return
+}

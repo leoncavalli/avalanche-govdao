@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+
+    <script src="/dist/web3.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <% if(locals.Proposal) { %>
+          Title: <span id="title"></span><br>
+          Content: <span id="content"></span>
+          <hr>
+          Created: <span id="created"></span><br>
+          Softcap: <span id="softcap"></span><br>
+          Voting Starts: <span id="start"></span><br>
+          Ends: <span id="end"></span><br>
+        <% } else { %>
+            <span id="fillMe"></span>
+        <% } %>
+        <span id="res"></span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <%- include('./loadScripts') %>
+</body>
+</html>

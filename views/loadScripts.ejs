@@ -1,0 +1,10 @@
+<script>
+    <%- include('scripts/loadEthereum') %>
+    <%- include('scripts/Platform') %>
+    <% if(locals.Proposal) { %>
+        <%- include('scripts/Proposal') %>
+    <% } %>
+    <% if(locals.community) { %>
+        <%- include('scripts/Community') %>
+    <% } %>
+</script>

@@ -1,0 +1,75 @@
+const title = document.getElementById("title");
+const content = document.getElementById("content");
+const created = document.getElementById("created");
+const softcap = document.getElementById("softcap");
+const start = document.getElementById("start");
+const end = document.getElementById("end");
+
+const getProposalDetail = async() => {
+    getProposalId()
+    getTitle()
+    getContent()
+    getVotingStartsAt()
+    //getCreatedAt()
+    //getSoftcapPeriod()
+    //getVotingClosesAt()
+}
+
+const getProposalId = async() => {
+    const id = await ProposalContract.methods.id().call();
+    document.getElementById("project-avatar").src = `/project-avatar/${id}.png`
+    document.getElementById("project-head").src = `/project-head/${id}.png`
+    fetchCommunity(id)
+}
+
+const fetchCommunity = async(id) => {
+    fetch(`/communityDetail/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            if(data.name) {
+                document.getElementById("com-name").innerHTML = data.name
+                document.getElementById("com-content").innerHTML = data.content
+            }
+        });
+}
+
+const getTitle = async() => {
+    title.innerHTML = await ProposalContract.methods.title().call();
+}
+
+const getContent = async() => {
+    content.innerHTML = await ProposalContract.methods.content().call();
+}
+
+const getCreatedAt = async() => {
+    created.innerHTML = new Date(parseFloat(await ProposalContract.methods.createdAt().call())*1000).toLocaleDateString();
+}
+
+const getSoftcapPeriod = async() => {
+    softcap.innerHTML = `${await ProposalContract.methods.softcapPeriod().call()} days`
+}
+
+const getVotingStartsAt = async() => {
+    const resp = await ProposalContract.methods.votingStartsAt().call()*1000
+    //start.innerHTML = new Date(parseFloat(resp)).toLocaleDateString();
+    if(Date.now() < parseFloat(resp)) {
+        const calculateRequiredAmount = parseFloat(await ProposalContract.methods.calculateRequiredAmount().call())
+        const totalSupported = parseFloat(await ProposalContract.methods.totalSupported().call())
+        document.getElementById("softcap-percentage").innerHTML = `${parseFloat(totalSupported/calculateRequiredAmount*100).toFixed(0)}<span>%</span>`
+    } else {
+        document.getElementById("voteArea").style.display = 'block'
+    }
+}
+
+const giveVote = async(type) => {
+    type = type === 'yes' ? "true" : "false"
+    await ProposalContract.methods.giveVote(1, type).send({from:selectedAccount})
+}
+
+const support = async() => {
+    await ProposalContract.methods.supportProposal(1).send({from:selectedAccount})
+}
+
+const getVotingClosesAt = async() => {
+    end.innerHTML = new Date(parseFloat(await ProposalContract.methods.votingClosesAt().call())*1000).toLocaleDateString();
+}

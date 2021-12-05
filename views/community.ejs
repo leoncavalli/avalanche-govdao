@@ -1,0 +1,144 @@
+<%- include('header') %>
+    <section>
+        <div class="container-fluid proposal-detail-bg pick-proposal-gradiend p-0">
+           <img class="banner-img" src="/project-head/<%- comId %>.png">
+           <div class="container">
+            <div class="proposal-detail-header">
+                <div class="project-avatar ">
+                    <img src="/project-avatar/<%- comId %>.png">
+                </div>
+                <div class="d-flex flex-column justify-content-center"> 
+                    <div class="proposal-detail-header-title dao-primary-text"><%- community.name %></div>
+                    <div class="d-flex"><%- community.content %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-12 mb-2" style="padding: 0">
+                    <a href="/create/<%- comId %>"><button class="btn dao-secondary p-3 mx-3 w-25 rounded-lg text-center dao-primary-text border-0">Create Proposal</button></a>
+                </div>
+                <div class="col-8"> 
+                    <div class="recent-vote">
+                        <div class="proposal-title pb-2">
+                            Incoming
+                        </div>
+                        <div id="incoming-proposals">
+                        </div>
+  
+                        <div class="proposal-title pt-4">
+                            Open
+                        </div>
+                        <div id="open-proposals">
+                        </div>
+
+                        <div class="proposal-title pt-4 text-dark">
+                            Closed
+                        </div>
+                        <div class="closed-proposal d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                            <div class="recent-vote-title p-3 dao-primary-text">
+                                Suspendisse sed nisi lacus sed?
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Remaining time</div>
+                                <div>0 days</div>
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Proposal  Vote</div>
+                                <div>%70</div>
+                                <div class="progress">
+                                    <div class="progress-bar dao-secondary  " role="progressbar" style="width: 70%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar dao-primary  " role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                            </div>
+                            <button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">View</button>
+                        </div>
+                        <div class="closed-proposal d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                            <div class="recent-vote-title p-3 dao-primary-text">
+                                Suspendisse sed nisi lacus sed?
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Remaining time</div>
+                                <div>0 days</div>
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Proposal  Vote</div>
+                                <div class="progress">
+                                    <div class="progress-bar dao-secondary  " role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                    <div class="progress-bar dao-primary  " role="progressbar" style="width: 60%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                  </div>
+                            </div>
+                            <button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">View</button>
+                        </div>
+                        <div class="closed-proposal d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                            <div class="recent-vote-title p-3 dao-primary-text">
+                                Suspendisse sed nisi lacus sed?
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Remaining time</div>
+                                <div>0 days</div>
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Proposal  Vote</div>
+                                <div class="progress">
+                                    <div class="progress-bar dao-secondary  " role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                    <div class="progress-bar dao-primary  " role="progressbar" style="width: 60%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                  </div>
+                            </div>
+                            <button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">View</button>
+                        </div>
+                        <div class="closed-proposal d-flex flex-row justify-content-between align-items-center bg-white rounded-lg shadow-sm mt-3">
+                            <div class="recent-vote-title p-3 dao-primary-text">
+                                Suspendisse sed nisi lacus sed?
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Remaining time</div>
+                                <div>0 days</div>
+                            </div>
+                            <div class="p-3">
+                                <div class="recent-vote-remaining">Proposal  Vote</div>
+                                <div class="progress">
+                                    <div class="progress-bar dao-secondary  " role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                    <div class="progress-bar dao-primary  " role="progressbar" style="width: 60%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                  </div>
+                            </div>
+                            <button class="dao-secondary p-2 mx-3 rounded-lg text-center dao-primary-text border-0">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4"> 
+                    <div class="proposal-title pb-2">
+                        Members
+                    </div>
+                    <div class="members-list">
+                        <div class="members">
+                            <img src="/member01.png">
+                        </div>
+                        <div class="members">
+                            <img src="/member02.png">
+                        </div>
+                        <div class="members">
+                            <img src="/member03.png">
+                        </div>
+                        <div class="members">
+                            <img src="/member04.png">
+                        </div>
+                        <div class="members">
+                            <img src="/member05.png">
+                        </div>
+                        <div class="members">
+                            <img src="/member06.png">
+                        </div>
+                    </div>
+                    <div class="p-3">+110.983 People following.</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <%- include('footer') %>
+    <%- include('loadScripts') %>
+  </body>
+</html>
